@@ -60,12 +60,6 @@
             <artifactId>druid</artifactId>
             <version>1.2.11</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.2.13</version>
-        </dependency>
-
 
         <!--七牛云图片服务器依赖-->
         <dependency>
