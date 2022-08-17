@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import lombok.Data;
 
@@ -16,14 +17,24 @@ import lombok.Data;
  * @date: 2022/8/17 16:00
  * @return:
  */
-@TableName(value = "west_out_detail")
+@TableName(value = "west_into_details")
 @Data
-public class OutDetail implements Serializable {
+public class IntoDetails implements Serializable {
     /**
      *
      */
     @TableId(type = IdType.ASSIGN_ID)
     private String id;
+
+    /**
+     *
+     */
+    private String intoId;
+
+    /**
+     *
+     */
+    private String no;
 
     /**
      *
@@ -34,6 +45,11 @@ public class OutDetail implements Serializable {
      *
      */
     private Integer number;
+
+    /**
+     *
+     */
+    private BigDecimal price;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
