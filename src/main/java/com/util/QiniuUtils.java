@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class QiniuUtils {
 
-    public static  final String URL = "https://static.mszlu.com/";
+/*    public static  final String URL = "https://static.mszlu.com/";
 
     @Value("${qiniu.accessKey}")
     private  String accessKey;
@@ -47,5 +47,5 @@ public class QiniuUtils {
             ex.printStackTrace();
         }
         return false;
-    }
+    }*/
 }

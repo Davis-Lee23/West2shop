@@ -1,4 +1,4 @@
-package com.west2shop;
+package com;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

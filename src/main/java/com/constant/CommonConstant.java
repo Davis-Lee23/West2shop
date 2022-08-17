@@ -14,4 +14,12 @@ public class CommonConstant {
      * 状态码-500
      */
     public static final Integer SC_INTERNAL_SERVER_ERROR_500 = 500;
+    /**
+     * 删除标志-0:未删除
+     */
+    public static final Integer DEL_FLAG_0 = 0;
+    /**
+     * 删除标志-1:已删除
+     */
+    public static final Integer DEL_FLAG_1 = 1;
 }
