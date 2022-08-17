@@ -13,4 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/shop/types")
 @Slf4j
 public class TypesController {
+
+
 }
