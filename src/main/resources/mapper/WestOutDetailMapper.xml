@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.WestOutDetailMapper">
+
+    <resultMap id="BaseResultMap" type="com.entity.WestOutDetail">
+            <result property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="goodId" column="good_id" jdbcType="VARCHAR"/>
+            <result property="number" column="number" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,good_id,number
+    </sql>
+</mapper>
