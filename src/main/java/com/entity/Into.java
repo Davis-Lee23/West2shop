@@ -6,11 +6,16 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * 
- * @TableName west_into
+ * TODO
+ * @author: LZP
+ * @date: 2022/8/17 16:00
+ * @return:
  */
 @TableName(value ="west_into")
 @Data
@@ -18,7 +23,7 @@ public class Into implements Serializable {
     /**
      * 
      */
-    @TableId
+    @TableId(type = IdType.ASSIGN_ID)
     private String id;
 
     /**
@@ -64,6 +69,8 @@ public class Into implements Serializable {
     /**
      * 
      */
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date time;
 
     /**

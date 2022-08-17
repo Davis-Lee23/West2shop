@@ -9,8 +9,10 @@ import java.math.BigDecimal;
 import lombok.Data;
 
 /**
- * 
- * @TableName west_record
+ * TODO
+ * @author: LZP
+ * @date: 2022/8/17 16:00
+ * @return:
  */
 @TableName(value ="west_record")
 @Data
@@ -18,7 +20,7 @@ public class Record implements Serializable {
     /**
      * 
      */
-    @TableId
+    @TableId(type = IdType.ASSIGN_ID)
     private String id;
 
     /**

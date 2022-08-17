@@ -9,16 +9,18 @@ import java.math.BigDecimal;
 import lombok.Data;
 
 /**
- * 
- * @TableName west_good
- */
+* TODO
+* @author: LZP
+* @date: 2022/8/17 16:00
+* @return:
+*/
 @TableName(value ="west_good")
 @Data
 public class Good implements Serializable {
     /**
      * 
      */
-    @TableId
+    @TableId(type = IdType.ASSIGN_ID)
     private String id;
 
     /**

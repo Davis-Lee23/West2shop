@@ -8,8 +8,10 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * 
- * @TableName west_out_detail
+ * TODO
+ * @author: LZP
+ * @date: 2022/8/17 16:00
+ * @return:
  */
 @TableName(value ="west_out_detail")
 @Data
@@ -17,6 +19,7 @@ public class OutDetail implements Serializable {
     /**
      * 
      */
+    @TableId(type = IdType.ASSIGN_ID)
     private String id;
 
     /**
