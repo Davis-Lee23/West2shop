@@ -1,10 +1,9 @@
 package com.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.common.Result;
+import com.vo.Result;
 import com.constant.CommonConstant;
 import com.entity.Good;
 import com.service.GoodService;
@@ -31,11 +30,11 @@ public class GoodController {
     private GoodService goodService;
 
     @GetMapping(value = "/list")
-    public Result<?> queryPageList(@RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
-                                   @RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
-                                   HttpServletRequest req){
-        Page<Good> page = new Page<>(pageNo,pageSize);
-        IPage<Good> pageList = goodService.page(page,new LambdaQueryWrapper<Good>()
+    public Result<?> queryPageList(@RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
+                                   @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
+                                   HttpServletRequest req) {
+        Page<Good> page = new Page<>(pageNo, pageSize);
+        IPage<Good> pageList = goodService.page(page, new LambdaQueryWrapper<Good>()
                 .eq(Good::getDelFlag, CommonConstant.DEL_FLAG_0));
         return Result.OK(pageList);
     }

@@ -1,4 +1,4 @@
-package com.common;
+package com.vo;
 
 import com.constant.CommonConstant;
 import io.swagger.annotations.ApiModel;
@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value="接口返回对象", description="接口返回对象")
+@ApiModel(value = "接口返回对象", description = "接口返回对象")
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
@@ -53,7 +53,7 @@ public class Result<T> implements Serializable {
         return this;
     }
 
-    public static<T> Result<T> OK() {
+    public static <T> Result<T> OK() {
         Result<T> r = new Result<T>();
         r.setSuccess(true);
         r.setCode(CommonConstant.SC_OK_200);
@@ -61,7 +61,7 @@ public class Result<T> implements Serializable {
         return r;
     }
 
-    public static<T> Result<T> OK(T data) {
+    public static <T> Result<T> OK(T data) {
         Result<T> r = new Result<T>();
         r.setSuccess(true);
         r.setCode(CommonConstant.SC_OK_200);
@@ -69,7 +69,7 @@ public class Result<T> implements Serializable {
         return r;
     }
 
-    public static<T> Result<T> OK(String msg, T data) {
+    public static <T> Result<T> OK(String msg, T data) {
         Result<T> r = new Result<T>();
         r.setSuccess(true);
         r.setCode(CommonConstant.SC_OK_200);
@@ -78,7 +78,7 @@ public class Result<T> implements Serializable {
         return r;
     }
 
-    public static<T> Result<T> error(String msg, T data) {
+    public static <T> Result<T> error(String msg, T data) {
         Result<T> r = new Result<T>();
         r.setSuccess(false);
         r.setCode(CommonConstant.SC_INTERNAL_SERVER_ERROR_500);

@@ -5,68 +5,35 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.math.BigDecimal;
-
 import lombok.Data;
 
 /**
- * TODO
- *
+ * TODO 公司摸鱼写代码
  * @author: LZP
- * @date: 2022/8/17 16:00
+ * @date: 2022/8/18 17:12
  * @return:
  */
-@TableName(value = "west_good")
+@TableName(value ="west_permission")
 @Data
-public class Good implements Serializable {
+public class Permission implements Serializable {
     /**
-     *
+     * 
      */
     @TableId(type = IdType.ASSIGN_ID)
     private String id;
 
     /**
-     *
+     * 
      */
-    private String shopId;
+    private String pid;
 
     /**
-     *
-     */
-    private String no;
-
-    /**
-     *
+     * 
      */
     private String name;
 
     /**
-     *
-     */
-    private String type;
-
-    /**
-     *
-     */
-    private BigDecimal price;
-
-    /**
-     *
-     */
-    private Integer preStock;
-
-    /**
-     *
-     */
-    private Integer stock;
-
-    /**
-     *
-     */
-    private String pic;
-
-    /**
-     *
+     * 
      */
     private Integer delFlag;
 
