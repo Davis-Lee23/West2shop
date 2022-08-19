@@ -1,5 +1,7 @@
 package com.constant;
 
+import io.swagger.models.auth.In;
+
 /**
  * @Description: TODO 通用常量
  * @author: LZP
@@ -15,11 +17,15 @@ public class CommonConstant {
      */
     public static final Integer SC_INTERNAL_SERVER_ERROR_500 = 500;
     /**
-     * 删除标志-0:未删除
+     * 删除标志-未删除
      */
     public static final Integer DEL_FLAG_0 = 0;
     /**
-     * 删除标志-1:已删除
+     * 删除标志-已删除
      */
     public static final Integer DEL_FLAG_1 = 1;
+    /**
+     * 祖宗节点
+     */
+    public static final String TYPES_ANCESTOR = "0";
 }

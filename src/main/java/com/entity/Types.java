@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
@@ -19,22 +20,35 @@ import lombok.Data;
 @TableName(value = "west_types")
 @Data
 public class Types implements Serializable {
+
     /**
      *
      */
     @TableId(type = IdType.ASSIGN_ID)
+    private String id;
+    /**
+     *
+     */
     private String name;
 
     /**
      *
      */
-    private String id;
+    private String pid;
 
     /**
      *
      */
     private String link;
 
+    /**
+     *
+     */
+    private Integer delFlag;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    @TableField(exist = false)
+    private List<Types> children;
 }
