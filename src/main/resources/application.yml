@@ -46,7 +46,7 @@ mybatis-plus:
     call-setters-on-nulls: true
 
 server:
-  port: 8080
+  port: 2333
 
 # Sa-Token配置
 sa-token:

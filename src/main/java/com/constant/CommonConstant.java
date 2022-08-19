@@ -30,7 +30,7 @@ public class CommonConstant {
     public static final String TYPES_ANCESTOR = "0";
 
     /**
-     *
+     * 商品编号前缀
      */
     public static final String GOOD_NO = "SP";
 }

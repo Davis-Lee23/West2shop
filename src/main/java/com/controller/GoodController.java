@@ -88,7 +88,7 @@ public class GoodController {
     }
 
     /**
-    * TODO 根据删除
+    * TODO 根据id删除
     * @author: LZP
     * @date: 2022/8/19 11:10
     * @param id:
