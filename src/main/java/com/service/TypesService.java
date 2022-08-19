@@ -19,4 +19,13 @@ public interface TypesService extends IService<Types> {
     * @return:
     */
     List<Types> listWithTree();
+
+    /**
+    * TODO 检测分类是否存在
+    * @author: LZP
+    * @date: 2022/8/19 10:41
+    * @param type:  
+    * @return: boolean 
+    */
+    boolean check(String type);
 }

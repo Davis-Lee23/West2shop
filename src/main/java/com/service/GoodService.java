@@ -10,4 +10,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface GoodService extends IService<Good> {
 
+    /**
+    * TODO 检查商品是否存在
+    * @author: LZP
+    * @date: 2022/8/19 10:56
+    * @param id:
+    * @return: boolean
+    */
+    boolean check(String id);
 }

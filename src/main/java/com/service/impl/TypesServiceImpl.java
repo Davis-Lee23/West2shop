@@ -1,6 +1,7 @@
 package com.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.constant.CommonConstant;
 import com.entity.Types;
 import com.service.TypesService;
 import com.mapper.TypesMapper;
@@ -25,7 +26,7 @@ public class TypesServiceImpl extends ServiceImpl<TypesMapper, Types> implements
     public List<Types> listWithTree() {
         List<Types> pageList = typesMapper.selectList(null);
         List<Types> types = pageList.stream().filter(type ->
-                "0".equals(type.getPid())).map((menu) ->{
+                CommonConstant.TYPES_ANCESTOR.equals(type.getPid())).map((menu) ->{
                     menu.setChildren(getChildrenData(menu,pageList));
                     return menu;
         }).collect(Collectors.toList());
@@ -48,6 +49,13 @@ public class TypesServiceImpl extends ServiceImpl<TypesMapper, Types> implements
             return types;
         }).collect(Collectors.toList());
         return children;
+    }
+
+    @Override
+    public boolean check(String id) {
+        Types types = typesMapper.selectById(id);
+        //分类存在，且没有被软删除
+        return types != null && types.getDelFlag().equals(CommonConstant.DEL_FLAG_0);
     }
 }
 

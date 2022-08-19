@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * @Description: TODO 全局异常处理-懒人标配
+ * @Description: TODO 全局权限异常处理-懒人标配
  * @author: LZP
  * @date: 2022年08月18日 17:18
  */

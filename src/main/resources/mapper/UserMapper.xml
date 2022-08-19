@@ -9,11 +9,11 @@
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="pwd" column="pwd" jdbcType="VARCHAR"/>
             <result property="sex" column="sex" jdbcType="VARCHAR"/>
-            <result property="headimg" column="headImg" jdbcType="VARCHAR"/>
+            <result property="headImg" column="head_img" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,name,pwd,
-        sex,headImg
+        sex,head_img
     </sql>
 </mapper>

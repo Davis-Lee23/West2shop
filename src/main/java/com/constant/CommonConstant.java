@@ -28,4 +28,9 @@ public class CommonConstant {
      * 祖宗节点
      */
     public static final String TYPES_ANCESTOR = "0";
+
+    /**
+     *
+     */
+    public static final String GOOD_NO = "SP";
 }

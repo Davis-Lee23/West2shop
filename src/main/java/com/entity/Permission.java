@@ -8,11 +8,11 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * TODO 公司摸鱼写代码
- * @author: LZP
- * @date: 2022/8/18 17:12
- * @return:
- */
+* TODO 公司摸鱼写代码
+* @author: LZP
+* @date: 2022/8/19 10:02
+* @return:
+*/
 @TableName(value ="west_permission")
 @Data
 public class Permission implements Serializable {
