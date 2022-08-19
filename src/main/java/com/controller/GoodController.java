@@ -24,6 +24,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/shop/good")
+@CrossOrigin
 @Slf4j
 public class GoodController {
 

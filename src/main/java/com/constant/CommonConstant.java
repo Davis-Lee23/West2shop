@@ -1,7 +1,5 @@
 package com.constant;
 
-import io.swagger.models.auth.In;
-
 /**
  * @Description: TODO 通用常量
  * @author: LZP
