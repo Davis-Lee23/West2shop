@@ -1,7 +1,10 @@
 package com.service;
 
+import com.entity.Into;
 import com.entity.IntoDetail;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * @author admin
@@ -10,4 +13,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IntoDetailService extends IService<IntoDetail> {
 
+    /**
+    * TODO 获取附表数据
+    * @author: LZP
+    * @date: 2022/8/22 16:09
+    * @param records:
+    * @return: void
+    */
+    void getIntoDetail(List<Into> records);
 }

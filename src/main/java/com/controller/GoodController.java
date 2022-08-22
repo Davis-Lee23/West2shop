@@ -68,6 +68,7 @@ public class GoodController {
             good.setNo(CommonConstant.GOOD_NO + new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()));
         }
         if(shopService.check(good.getShopId()) && typesService.check(good.getType())){
+            good.setStock(0);
             goodService.save(good);
             return Result.OK("商品添加成功");
         }

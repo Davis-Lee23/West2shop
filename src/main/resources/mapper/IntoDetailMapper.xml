@@ -17,4 +17,9 @@
         id,into_id,no,
         good_id,number,price
     </sql>
+    <delete id="deleteByMainId">
+        DELETE
+        FROM west_into_detail
+        WHERE into_id = #{id}
+    </delete>
 </mapper>

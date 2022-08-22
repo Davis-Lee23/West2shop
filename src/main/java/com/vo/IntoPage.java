@@ -1,35 +1,33 @@
-package com.entity;
+package com.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.entity.IntoDetail;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-
 /**
- * TODO
- *
+ * @Description: TODO
  * @author: LZP
- * @date: 2022/8/17 16:00
- * @return:
+ * @date: 2022年08月20日 10:38
  */
-@TableName(value = "west_into")
 @Data
-public class Into implements Serializable {
+@AllArgsConstructor
+@NoArgsConstructor
+public class IntoPage {
     /**
      *
      */
     @TableId(type = IdType.ASSIGN_ID)
     private String id;
-
     /**
      *
      */
@@ -67,9 +65,7 @@ public class Into implements Serializable {
      */
     private Integer delFlag;
 
-    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
-    @TableField(exist = false)
     private List<IntoDetail> intoDetailList;
 }

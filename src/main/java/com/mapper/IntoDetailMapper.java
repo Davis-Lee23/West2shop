@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface IntoDetailMapper extends BaseMapper<IntoDetail> {
 
+    void deleteByMainId(String id);
 }
 
 

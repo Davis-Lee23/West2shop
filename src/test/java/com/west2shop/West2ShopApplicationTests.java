@@ -1,6 +1,5 @@
 package com.west2shop;
 
-import com.entity.Good;
 import com.entity.Out;
 import com.mapper.GoodMapper;
 import com.mapper.OutMapper;
@@ -21,6 +20,6 @@ class West2ShopApplicationTests {
     @Test
     public void context(){
         List<Out> goods = outMapper.selectList(null);
-        System.out.println("列表："+goods);
+        System.out.println("列表:"+goods);
     }
 }

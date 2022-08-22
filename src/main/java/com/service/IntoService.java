@@ -2,6 +2,9 @@ package com.service;
 
 import com.entity.Into;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.entity.IntoDetail;
+
+import java.util.List;
 
 /**
  * @author admin
@@ -10,4 +13,23 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IntoService extends IService<Into> {
 
+    /**
+     * 添加一对多
+     * @param into
+     * @param intoDetailList
+     */
+    void savaMain(Into into, List<IntoDetail> intoDetailList);
+
+    /**
+     * 修改一对多
+     * @param into
+     * @param intoDetailList
+     */
+    void updateMain(Into into, List<IntoDetail> intoDetailList);
+
+    /**
+     * 删除一对多
+     * @param id
+     */
+    void delMain(String id);
 }

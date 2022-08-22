@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -34,6 +35,11 @@ public class IntoDetail implements Serializable {
     /**
      *
      */
+    private Date createTime;
+
+    /**
+     *
+     */
     private String no;
 
     /**
@@ -53,4 +59,7 @@ public class IntoDetail implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    @TableField(exist = false)
+    private String name;
 }

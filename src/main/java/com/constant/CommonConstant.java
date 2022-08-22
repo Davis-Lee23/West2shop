@@ -31,4 +31,9 @@ public class CommonConstant {
      * 商品编号前缀
      */
     public static final String GOOD_NO = "SP";
+
+    /**
+     * 入库编号前缀
+     */
+    public static final String IN_ORDER_NO = "RK";
 }
