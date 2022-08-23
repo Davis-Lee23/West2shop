@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -28,12 +29,22 @@ public class OutDetail implements Serializable {
     /**
      *
      */
+    private String outId;
+
+    /**
+     *
+     */
     private String goodId;
 
     /**
      *
      */
-    private Integer number;
+    private Integer num;
+
+    /**
+     *
+     */
+    private Date updateTime;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

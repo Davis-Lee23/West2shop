@@ -74,10 +74,12 @@ public class IntoServiceImpl extends ServiceImpl<IntoMapper, Into> implements In
         intoDetailMapper.deleteByMainId(into.getId());
 
         //2.子表数据重新插入
+        Date date = new Date();
         if (intoDetailList != null && intoDetailList.size() > 0) {
             for (IntoDetail entity : intoDetailList) {
                 //伪外键设置
                 entity.setIntoId(into.getId());
+                entity.setCreateTime(date);
                 intoDetailMapper.insert(entity);
             }
         }

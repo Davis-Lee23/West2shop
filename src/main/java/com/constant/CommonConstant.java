@@ -36,4 +36,9 @@ public class CommonConstant {
      * 入库编号前缀
      */
     public static final String IN_ORDER_NO = "RK";
+
+    /**
+     * 出库编号前缀
+     */
+    public static final String OUT_NO = "CK";
 }

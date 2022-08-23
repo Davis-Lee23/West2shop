@@ -30,7 +30,7 @@ public class QiniuUtils {
     public boolean upload(MultipartFile file, String fileName) {
 
         //构造一个带指定 Region 对象的配置类
-        Configuration cfg = new Configuration(Region.huabei());
+        Configuration cfg = new Configuration(Region.huanan());
         //...其他参数参考类注释
         UploadManager uploadManager = new UploadManager(cfg);
         //...生成上传凭证，然后准备上传

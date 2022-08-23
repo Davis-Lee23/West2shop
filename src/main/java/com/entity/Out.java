@@ -6,8 +6,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.vo.OutDetailVO;
 import lombok.Data;
 
 /**
@@ -37,10 +40,23 @@ public class Out implements Serializable {
     private Date date;
 
     /**
+     * 图片路径
+     */
+    private String pic;
+
+    /**
+     *
+     */
+    private Date updateTime;
+
+    /**
      *
      */
     private Integer delFlag;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    @TableField(exist = false)
+    private List<OutDetailVO> voList = new ArrayList<>();
 }
