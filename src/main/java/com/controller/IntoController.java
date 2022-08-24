@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.constant.CommonConstant;
+import com.constant.ErrorConstant;
 import com.entity.Into;
 import com.entity.IntoDetail;
 import com.service.GoodService;
@@ -70,7 +71,7 @@ public class IntoController {
         BeanUtils.copyProperties(intoPage,into);
         into.setCreateTime(new Date());
         intoService.savaMain(into,intoPage.getIntoDetailList());
-        return Result.OK("添加成功");
+        return Result.OK(CommonConstant.ADD_SUCCESS);
     }
 
     /**
@@ -86,10 +87,10 @@ public class IntoController {
         BeanUtils.copyProperties(intoPage,into);
         Into entity = intoService.getById(into.getId());
         if(entity == null){
-            return Result.error("未找到对应数据");
+            return Result.error(ErrorConstant.NOT_FOUND_DATA);
         }
         intoService.updateMain(into, intoPage.getIntoDetailList());
-        return Result.OK("编辑成功!");
+        return Result.OK(CommonConstant.EDIT_SUCCESS);
     }
 
     /**
@@ -102,6 +103,6 @@ public class IntoController {
     @DeleteMapping(value = "/delete")
     public Result<?> delete(@RequestParam(name = "id") String id){
         intoService.delMain(id);
-        return Result.OK("删除成功");
+        return Result.OK(CommonConstant.DELETE_SUCCESS);
     }
 }

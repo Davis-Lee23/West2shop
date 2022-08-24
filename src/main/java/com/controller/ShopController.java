@@ -80,7 +80,7 @@ public class ShopController {
     @PutMapping("/edit")
     public Result<?> edit(@RequestBody Shop shop){
         shopService.updateById(shop);
-        return Result.OK("修改商店信息成功");
+        return Result.OK(CommonConstant.EDIT_SUCCESS);
     }
 
     /**
@@ -93,7 +93,7 @@ public class ShopController {
     @DeleteMapping("/delete")
     public Result<?> delete(@RequestParam(name = "id", required = true) String id) {
         shopService.removeById(id);
-        return Result.OK("删除成功!");
+        return Result.OK(CommonConstant.DELETE_SUCCESS);
     }
 
     /**

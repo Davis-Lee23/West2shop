@@ -3,6 +3,7 @@ package com.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.constant.ErrorConstant;
 import com.service.ShopService;
 import com.service.TypesService;
 import com.util.QiniuUtils;
@@ -96,7 +97,7 @@ public class GoodController {
     public Result<?> edit(@RequestBody Good good){
         goodService.check(good.getId());
         goodService.updateById(good);
-        return Result.OK("编辑成功!");
+        return Result.OK(CommonConstant.EDIT_SUCCESS);
     }
 
     /**
@@ -109,9 +110,9 @@ public class GoodController {
     @DeleteMapping(value = "/delete")
     public Result<?> delete(@RequestParam(name="id") String id) {
         if(goodService.removeById(id)){
-            return Result.OK("删除成功!");
+            return Result.OK(CommonConstant.DELETE_SUCCESS);
         }else {
-            return Result.OK("数据库不存在该数据!");
+            return Result.OK(ErrorConstant.NOT_FOUND_DATA);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.constant.CommonConstant;
+import com.constant.ErrorConstant;
 import com.vo.Result;
 import com.entity.Types;
 import com.service.TypesService;
@@ -42,21 +43,21 @@ public class TypesController {
     public Result<?> add(@RequestBody Types types){
         types.setDelFlag(CommonConstant.DEL_FLAG_0);
         typesService.save(types);
-        return Result.OK("添加成功");
+        return Result.OK(CommonConstant.ADD_SUCCESS);
     }
 
     @PutMapping(value = "/edit")
     public Result<?> edit(@RequestBody Types types){
         typesService.updateById(types);
-        return Result.OK("编辑成功!");
+        return Result.OK(CommonConstant.EDIT_SUCCESS);
     }
 
     @DeleteMapping(value = "/delete")
     public Result<?> delete(@RequestParam(name = "id") String id){
         if(typesService.removeById(id)){
-            return Result.OK("删除成功!");
+            return Result.OK(CommonConstant.DELETE_SUCCESS);
         }else {
-            return Result.OK("数据库不存在该数据!");
+            return Result.OK(ErrorConstant.NOT_FOUND_DATA);
         }
     }
 }
