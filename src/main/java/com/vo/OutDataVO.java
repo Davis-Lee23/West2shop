@@ -17,5 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OutDataVO {
+    private String shopId;
     private List<DataDTO> data;
 }

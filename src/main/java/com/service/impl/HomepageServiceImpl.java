@@ -28,8 +28,8 @@ public class HomepageServiceImpl implements HomepageService {
     private GoodMapper goodMapper;
 
     @Override
-    public List<HotGoodVO> hotGoods() {
-        List<HotGoodVO> list = outDetailMapper.selectHotGoods();
+    public List<HotGoodVO> hotGoods(String shopId) {
+        List<HotGoodVO> list = outDetailMapper.selectHotGoods(shopId);
         System.out.println(list);
         for(HotGoodVO vo:list){
             Good good = goodMapper.selectById(vo.getGoodId());
@@ -45,12 +45,12 @@ public class HomepageServiceImpl implements HomepageService {
     }
 
     @Override
-    public List<TimeSlotVo> timeSlots() {
-        List<TimeGoodDTO> beforeDown = outDetailMapper.selectByTime(0,6);
-        List<TimeGoodDTO> morning = outDetailMapper.selectByTime(6,11);
-        List<TimeGoodDTO> noon = outDetailMapper.selectByTime(11,13);
-        List<TimeGoodDTO> afternoon = outDetailMapper.selectByTime(13,18);
-        List<TimeGoodDTO> night = outDetailMapper.selectByTime(18,24);
+    public List<TimeSlotVo> timeSlots(String shopId) {
+        List<TimeGoodDTO> beforeDown = outDetailMapper.selectByTime(0,6,shopId);
+        List<TimeGoodDTO> morning = outDetailMapper.selectByTime(6,11,shopId);
+        List<TimeGoodDTO> noon = outDetailMapper.selectByTime(11,13,shopId);
+        List<TimeGoodDTO> afternoon = outDetailMapper.selectByTime(13,18,shopId);
+        List<TimeGoodDTO> night = outDetailMapper.selectByTime(18,24,shopId);
         List<TimeSlotVo> list = new ArrayList<>();
         list.add(new TimeSlotVo(beforeDown,getTimeSum(beforeDown)));
         list.add(new TimeSlotVo(morning,getTimeSum(morning)));

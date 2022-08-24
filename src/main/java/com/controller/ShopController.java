@@ -25,6 +25,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/shop/shop")
 @Slf4j
+@CrossOrigin
 public class ShopController {
 
     @Autowired

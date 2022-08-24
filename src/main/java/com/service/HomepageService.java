@@ -12,7 +12,7 @@ public interface HomepageService {
     * @date: 2022/8/24 16:28
     * @return: java.util.List<com.vo.HotGoodVO>
     */
-    List<HotGoodVO> hotGoods();
+    List<HotGoodVO> hotGoods(String shopId);
 
     /**
     * TODO 时间段最热商品
@@ -20,5 +20,5 @@ public interface HomepageService {
     * @date: 2022/8/24 16:28
     * @return: java.lang.Object
     */
-    Object timeSlots();
+    Object timeSlots(String shopId);
 }

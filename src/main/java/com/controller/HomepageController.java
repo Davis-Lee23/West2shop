@@ -3,6 +3,7 @@ package com.controller;
 import com.service.HomepageService;
 import com.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/shop/home")
+@CrossOrigin
 public class HomepageController {
 
     @Autowired
@@ -26,13 +28,13 @@ public class HomepageController {
     * @return: com.vo.Result<?>
     */
     @GetMapping(value = "/hotGoods")
-    public Result<?> hotGoods(){
-        return Result.OK(homepageService.hotGoods());
+    public Result<?> hotGoods(String shopId){
+        return Result.OK(homepageService.hotGoods(shopId));
     }
 
     @GetMapping(value = "/timeSlots")
-    public Result<?> timeSlots(){
-        return Result.OK(homepageService.timeSlots());
+    public Result<?> timeSlots(String shopId){
+        return Result.OK(homepageService.timeSlots(shopId));
     }
 
 }

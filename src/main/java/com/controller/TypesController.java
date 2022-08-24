@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/shop/types")
 @Slf4j
+@CrossOrigin
 public class TypesController {
     @Autowired
     private TypesService typesService;

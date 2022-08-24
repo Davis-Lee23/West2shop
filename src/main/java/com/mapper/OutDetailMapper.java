@@ -23,9 +23,9 @@ public interface OutDetailMapper extends BaseMapper<OutDetail> {
     * @date: 2022/8/24 15:47
     * @return: java.util.List<com.vo.HotGoodVO>
     */
-    List<HotGoodVO> selectHotGoods();
+    List<HotGoodVO> selectHotGoods(String shopId);
 
-    List<TimeGoodDTO> selectByTime(int start, int end);
+    List<TimeGoodDTO> selectByTime(int start, int end,String shopId);
 
 }
 

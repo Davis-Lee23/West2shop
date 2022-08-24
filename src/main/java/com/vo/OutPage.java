@@ -27,6 +27,11 @@ public class OutPage {
     /**
      *
      */
+    private String shopId;
+
+    /**
+     *
+     */
     private Date createTime;
 
     /**

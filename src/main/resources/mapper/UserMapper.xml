@@ -5,8 +5,7 @@
 <mapper namespace="com.mapper.UserMapper">
 
     <resultMap id="BaseResultMap" type="com.entity.User">
-            <id property="id" column="id" jdbcType="VARCHAR"/>
-            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <id property="phone" column="phone" jdbcType="VARCHAR"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="pwd" column="pwd" jdbcType="VARCHAR"/>
             <result property="sex" column="sex" jdbcType="VARCHAR"/>
@@ -16,8 +15,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,phone,name,
-        pwd,sex,email,
-        head_img,del_flag
+        phone,name,pwd,
+        sex,email,head_img,
+        del_flag
     </sql>
 </mapper>

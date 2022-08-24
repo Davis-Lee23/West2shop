@@ -64,6 +64,7 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
         out.setUpdateTime(now);
         out.setDelFlag(CommonConstant.DEL_FLAG_0);
         out.setNo(CommonConstant.OUT_NO + new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()));
+        out.setShopId(outData.getShopId());
         outMapper.insert(out);
         //子表
         for(DataDTO entity:outData.getData()){

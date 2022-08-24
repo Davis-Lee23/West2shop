@@ -28,6 +28,7 @@ import java.util.Date;
 @RestController
 @RequestMapping("/shop/into")
 @Slf4j
+@CrossOrigin
 public class IntoController {
 
     @Autowired
@@ -48,11 +49,13 @@ public class IntoController {
     @GetMapping("/list")
     public Result<?> queryPageList(@RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
                                    @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
+                                   String shopId,
                                    HttpServletRequest req){
         //获取主表数据
         Page<Into> page = new Page<>(pageNo,pageSize);
         IPage<Into> pageList = intoService.page(page,new LambdaQueryWrapper<Into>()
-                .eq(Into::getDelFlag, CommonConstant.DEL_FLAG_0));
+                .eq(Into::getDelFlag, CommonConstant.DEL_FLAG_0)
+                .eq(Into::getShopId,shopId));
         //获取附表数据
         intoDetailService.getIntoDetail(pageList.getRecords());
         return Result.OK(pageList);

@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/shop/out")
 @Slf4j
+@CrossOrigin
 public class OutController {
 
     @Autowired
@@ -33,11 +34,12 @@ public class OutController {
     @GetMapping(value = "/list")
     public Result<?> queryPageList(@RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
                                    @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
-                                   HttpServletRequest req){
+                                   String shopId, HttpServletRequest req){
         //获取主表数据
         Page<Out> page = new Page<>(pageNo,pageSize);
         IPage<Out> pageList = outService.page(page,new LambdaQueryWrapper<Out>()
-                .eq(Out::getDelFlag, CommonConstant.DEL_FLAG_0));
+                .eq(Out::getDelFlag, CommonConstant.DEL_FLAG_0)
+                .eq(Out::getShopId,shopId));
         //获取附表数据
         outService.getOutDetail(pageList.getRecords());
         return Result.OK(pageList);

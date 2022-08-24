@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.vo.OutDetailVO;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * TODO
@@ -37,11 +39,20 @@ public class Out implements Serializable {
     /**
      *
      */
+    private String shopId;
+
+    /**
+     *
+     */
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
      *
      */
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**

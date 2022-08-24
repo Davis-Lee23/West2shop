@@ -46,6 +46,7 @@ public class IntoServiceImpl extends ServiceImpl<IntoMapper, Into> implements In
                 if(good == null){
                     good = new Good();
                     good.setId(entity.getGoodId());
+                    good.setShopId(into.getShopId());
                     good.setName(entity.getName());
                     good.setPrice(entity.getPrice());
                     good.setStock(entity.getNumber());
@@ -55,6 +56,7 @@ public class IntoServiceImpl extends ServiceImpl<IntoMapper, Into> implements In
                     entity.setGoodId(good.getId());
                 }else {
                     //原本存在商品
+                    good.setShopId(into.getShopId());
                     good.setStock(good.getStock()+entity.getNumber());
                     goodMapper.updateById(good);
                 }
