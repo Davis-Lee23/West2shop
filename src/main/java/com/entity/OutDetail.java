@@ -44,6 +44,11 @@ public class OutDetail implements Serializable {
     /**
      *
      */
+    private Date createTime;
+
+    /**
+     *
+     */
     private Date updateTime;
 
     @TableField(exist = false)

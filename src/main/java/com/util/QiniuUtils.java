@@ -7,15 +7,19 @@ package com.util;
  */
 
 import com.alibaba.fastjson.JSON;
+import com.constant.ErrorConstant;
 import com.qiniu.http.Response;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.UUID;
 
 @Component
 public class QiniuUtils {
@@ -48,5 +52,14 @@ public class QiniuUtils {
             ex.printStackTrace();
         }
         return false;
+    }
+
+    public String uploadImg(MultipartFile file){
+        String fileName = UUID.randomUUID() + "." + StringUtils.substringAfterLast(file.getOriginalFilename(), ".");
+        boolean flag = upload(file, fileName);
+        if (flag){
+            return QiniuUtils.URL + fileName;
+        }
+        throw new RuntimeException(ErrorConstant.UTILS_UPLOAD_IMAGE_ERROR);
     }
 }

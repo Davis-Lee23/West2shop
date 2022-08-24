@@ -55,7 +55,7 @@ public class Into implements Serializable {
      */
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date time;
+    private Date createTime;
 
     /**
      *
@@ -66,6 +66,11 @@ public class Into implements Serializable {
      *
      */
     private Integer delFlag;
+
+    /**
+     *
+     */
+    private Date updateTime;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

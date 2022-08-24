@@ -68,6 +68,7 @@ public class IntoServiceImpl extends ServiceImpl<IntoMapper, Into> implements In
 
     @Override
     public void updateMain(Into into, List<IntoDetail> intoDetailList) {
+        into.setUpdateTime(new Date());
         intoMapper.updateById(into);
 
         //1.先删除子表数据

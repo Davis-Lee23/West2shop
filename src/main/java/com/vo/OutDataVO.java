@@ -17,6 +17,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OutDataVO {
-    private String id;
     private List<DataDTO> data;
 }

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.service.ShopService;
 import com.service.TypesService;
+import com.util.QiniuUtils;
 import com.vo.Result;
 import com.constant.CommonConstant;
 import com.entity.Good;
@@ -12,6 +13,7 @@ import com.service.GoodService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
@@ -34,6 +36,8 @@ public class GoodController {
     private ShopService shopService;
     @Autowired
     private TypesService typesService;
+    @Autowired
+    private QiniuUtils qiniuUtils;
 
     /**
     * TODO 分页查询
@@ -52,6 +56,12 @@ public class GoodController {
         IPage<Good> pageList = goodService.page(page, new LambdaQueryWrapper<Good>()
                 .eq(Good::getDelFlag, CommonConstant.DEL_FLAG_0));
         return Result.OK(pageList);
+    }
+
+    @PostMapping(value = "/uploadImage")
+    public Result<?> uploadImage(@RequestParam("image") MultipartFile file){
+        String url = qiniuUtils.uploadImg(file);
+        return Result.OK(url);
     }
 
     /**

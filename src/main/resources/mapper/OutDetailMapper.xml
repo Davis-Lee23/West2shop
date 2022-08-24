@@ -7,10 +7,15 @@
     <resultMap id="BaseResultMap" type="com.entity.OutDetail">
             <result property="id" column="id" jdbcType="VARCHAR"/>
             <result property="goodId" column="good_id" jdbcType="VARCHAR"/>
-            <result property="number" column="number" jdbcType="INTEGER"/>
+            <result property="num" column="num" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,good_id,number
+        id,good_id,num
     </sql>
+    <delete id="deleteByMainId">
+        DELETE
+        FROM west_out_detail
+        WHERE out_id = #{id}
+    </delete>
 </mapper>

@@ -40,8 +40,6 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
     private GoodMapper goodMapper;
     @Resource
     private OutDetailMapper outDetailMapper;
-    @Autowired
-    private QiniuUtils qiniuUtils;
     @Resource
     private OutMapper outMapper;
 
@@ -60,6 +58,54 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
             }
         }
 
+    @Override
+    public void addByData(OutDataVO outData) {
+        //主表
+        Out out = new Out();
+        Date now = new Date();
+        out.setCreateTime(now);
+        out.setUpdateTime(now);
+        out.setDelFlag(CommonConstant.DEL_FLAG_0);
+        out.setNo(CommonConstant.OUT_NO + new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()));
+        outMapper.insert(out);
+        //子表
+        for(DataDTO entity:outData.getData()){
+            OutDetail detail = new OutDetail();
+            detail.setOutId(out.getId());
+            detail.setGoodId(entity.getId());
+            detail.setNum(entity.getNum());
+            detail.setCreateTime(now);
+            detail.setUpdateTime(now);
+            outDetailMapper.insert(detail);
+        }
+    }
+
+    @Override
+    public void updateMain(Out out, List<OutDetail> outDetailList) {
+        Date now = new Date();
+        out.setUpdateTime(now);
+        outMapper.updateById(out);
+
+        //1.先删除子表数据
+        outDetailMapper.deleteByMainId(out.getId());
+
+        //子表数据重新插入
+        if(outDetailList != null && outDetailList.size() >0){
+            for(OutDetail entity:outDetailList){
+                //伪外键设置
+                entity.setOutId(out.getId());
+                entity.setUpdateTime(now);
+                outDetailMapper.insert(entity);
+            }
+        }
+    }
+
+    @Override
+    public void delMain(String id) {
+        outDetailMapper.deleteByMainId(id);
+        outMapper.deleteById(id);
+    }
+
     public OutDetailVO transferVo(Good good,OutDetail detail){
         OutDetailVO vo = new OutDetailVO();
         BeanUtils.copyProperties(good,vo);
@@ -69,7 +115,7 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
         return vo;
     }
 
-    @Override
+/*    @Override
     public String uploadImg(MultipartFile file) {
         String fileName = UUID.randomUUID() + "." + StringUtils.substringAfterLast(file.getOriginalFilename(), ".");
         boolean upload = qiniuUtils.upload(file, fileName);
@@ -98,7 +144,7 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
             detail.setUpdateTime(date);
             outDetailMapper.insert(detail);
         }
-    }
+    }*/
 }
 
 

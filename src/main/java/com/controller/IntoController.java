@@ -68,7 +68,7 @@ public class IntoController {
     public Result<?> add(@RequestBody IntoPage intoPage){
         Into into = new Into();
         BeanUtils.copyProperties(intoPage,into);
-        into.setTime(new Date());
+        into.setCreateTime(new Date());
         intoService.savaMain(into,intoPage.getIntoDetailList());
         return Result.OK("添加成功");
     }

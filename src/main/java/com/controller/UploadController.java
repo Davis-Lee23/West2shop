@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.util.UUID;
 
 /**
  * @Description: TODO 图片上传
@@ -26,11 +25,7 @@ public class UploadController {
 
     @PostMapping(value = "/image")
     public Result<?> upload(@RequestParam("image") MultipartFile file){
-        String fileName = UUID.randomUUID() + "." + StringUtils.substringAfterLast(file.getOriginalFilename(), ".");
-        boolean upload = qiniuUtils.upload(file, fileName);
-        if (upload){
-            return Result.OK(QiniuUtils.URL + fileName);
-        }
-        return Result.error("上传失败");
+        String url = qiniuUtils.uploadImg(file);
+        return Result.OK(url);
     }
 }

@@ -37,12 +37,7 @@ public class Out implements Serializable {
     /**
      *
      */
-    private Date date;
-
-    /**
-     * 图片路径
-     */
-    private String pic;
+    private Date createTime;
 
     /**
      *

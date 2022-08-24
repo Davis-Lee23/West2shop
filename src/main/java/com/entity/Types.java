@@ -44,6 +44,11 @@ public class Types implements Serializable {
     /**
      *
      */
+    private String pic;
+
+    /**
+     *
+     */
     private Integer delFlag;
 
     @TableField(exist = false)

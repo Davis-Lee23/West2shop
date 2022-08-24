@@ -44,6 +44,11 @@ public class Shop implements Serializable {
     /**
      *
      */
+    private String pic;
+
+    /**
+     *
+     */
     private String position;
 
     /**

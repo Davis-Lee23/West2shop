@@ -41,4 +41,19 @@ public class CommonConstant {
      * 出库编号前缀
      */
     public static final String OUT_NO = "CK";
+
+    /**
+     * 提示常量-新增成功
+     */
+    public static final String ADD_SUCCESS = "新增成功";
+
+    /**
+     * 提示常量-编辑成功
+     */
+    public static final String EDIT_SUCCESS = "编辑成功";
+
+    /**
+     * 提示常量-新增成功
+     */
+    public static final String DELETE_SUCCESS = "删除成功";
 }

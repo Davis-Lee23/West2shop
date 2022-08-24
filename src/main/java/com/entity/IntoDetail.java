@@ -57,6 +57,11 @@ public class IntoDetail implements Serializable {
      */
     private BigDecimal price;
 
+    /**
+     *
+     */
+    private Date updateTime;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
