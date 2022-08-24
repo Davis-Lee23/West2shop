@@ -29,11 +29,6 @@ public class Shop implements Serializable {
     /**
      *
      */
-    private String createBy;
-
-    /**
-     *
-     */
     private Date createTime;
 
     /**

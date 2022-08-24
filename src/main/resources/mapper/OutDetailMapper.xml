@@ -18,4 +18,13 @@
         FROM west_out_detail
         WHERE out_id = #{id}
     </delete>
+    <select id="selectHotGoods" resultType="com.vo.HotGoodVO">
+        select SUM(num) as num,good_id from west_out_detail  GROUP BY good_id
+    </select>
+    <select id="selectByTime" resultType="com.dto.TimeGoodDTO">
+        SELECT SUM(num) as num,good_id
+        from west_out_detail
+        WHERE hour(create_time) >= #{start} AND hour(create_time) <![CDATA[<]]>  #{end}
+        GROUP BY good_id
+    </select>
 </mapper>

@@ -5,50 +5,41 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
 
 /**
  * 
- * @TableName west_user
+ * @TableName west_user_permission
  */
-@TableName(value ="west_user")
+@TableName(value ="west_user_permission")
 @Data
-public class User implements Serializable {
+public class UserPermission implements Serializable {
     /**
      * 
      */
-    @TableId
-    private String id;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
 
     /**
      * 
      */
-    private String phone;
+    private String userId;
 
     /**
      * 
      */
-    private String name;
+    private String permission;
 
     /**
      * 
      */
-    private String pwd;
+    private Date createTime;
 
     /**
      * 
      */
-    private String sex;
-
-    /**
-     * 
-     */
-    private String email;
-
-    /**
-     * 
-     */
-    private String headImg;
+    private Date updateTime;
 
     /**
      * 

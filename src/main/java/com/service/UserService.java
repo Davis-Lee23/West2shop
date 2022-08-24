@@ -4,9 +4,9 @@ import com.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
-* @author admin
+* @author LBJ
 * @description 针对表【west_user】的数据库操作Service
-* @createDate 2022-08-19 10:02:01
+* @createDate 2022-08-24 11:21:05
 */
 public interface UserService extends IService<User> {
 

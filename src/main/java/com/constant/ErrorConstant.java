@@ -26,4 +26,14 @@ public class ErrorConstant {
      * 未找到对应数据
      */
     public static final String NOT_FOUND_DATA = "未找到对应数据";
+
+    /**
+     *
+     */
+    public static final String GOOD_STOCK_INSUFFICIENT = "商品库存不足";
+
+    /**
+     *
+     */
+    public static final String GOOD_NOT_FOUND = "该商品未找到";
 }

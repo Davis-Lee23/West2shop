@@ -3,10 +3,7 @@ package com.controller;
 import com.util.QiniuUtils;
 import com.vo.Result;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -18,6 +15,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/shop/upload")
+@CrossOrigin
 public class UploadController {
 
     @Resource

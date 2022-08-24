@@ -3,6 +3,7 @@ package com.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.constant.CommonConstant;
+import com.constant.ErrorConstant;
 import com.dto.DataDTO;
 import com.entity.Good;
 import com.entity.Out;
@@ -11,21 +12,16 @@ import com.mapper.GoodMapper;
 import com.mapper.OutDetailMapper;
 import com.service.OutService;
 import com.mapper.OutMapper;
-import com.util.QiniuUtils;
 import com.vo.OutDataVO;
 import com.vo.OutDetailVO;
-import com.vo.Result;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
 * @author admin
@@ -59,6 +55,7 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
         }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void addByData(OutDataVO outData) {
         //主表
         Out out = new Out();
@@ -77,6 +74,13 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
             detail.setCreateTime(now);
             detail.setUpdateTime(now);
             outDetailMapper.insert(detail);
+            //对商品表进行处理
+            Good good = goodMapper.selectOne(new LambdaQueryWrapper<Good>().eq(Good::getId,detail.getGoodId()));
+            good.setStock(good.getStock()-detail.getNum());
+            if (good.getStock() < 0){
+                throw new RuntimeException(ErrorConstant.GOOD_STOCK_INSUFFICIENT);
+            }
+            goodMapper.updateById(good);
         }
     }
 

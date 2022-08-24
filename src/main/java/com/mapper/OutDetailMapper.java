@@ -1,7 +1,11 @@
 package com.mapper;
 
+import com.dto.TimeGoodDTO;
 import com.entity.OutDetail;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.vo.HotGoodVO;
+
+import java.util.List;
 
 /**
 * @author admin
@@ -12,6 +16,17 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface OutDetailMapper extends BaseMapper<OutDetail> {
 
     void deleteByMainId(String id);
+
+    /**
+    * TODO 热销商品
+    * @author: LZP
+    * @date: 2022/8/24 15:47
+    * @return: java.util.List<com.vo.HotGoodVO>
+    */
+    List<HotGoodVO> selectHotGoods();
+
+    List<TimeGoodDTO> selectByTime(int start, int end);
+
 }
 
 

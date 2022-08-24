@@ -67,7 +67,7 @@ public class ShopController {
         }catch (Exception e){
             throw new RuntimeException("添加商店出现异常");
         }
-        return Result.OK("添加商店成功");
+        return Result.OK(shop.getId());
     }
 
     /**
