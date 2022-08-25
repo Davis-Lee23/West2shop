@@ -17,7 +17,7 @@ public class User implements Serializable {
      * 
      */
     @TableId
-    private String phone;
+    private String id;
 
     /**
      * 

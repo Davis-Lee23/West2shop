@@ -45,10 +45,12 @@ public class ShopController {
     @GetMapping("/list")
     public Result<?> queryPageList(@RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
                                    @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
+                                   String userId,
                                    HttpServletRequest req){
         Page<Shop> page = new Page<>(pageNo, pageSize);
         IPage<Shop> pageList = shopService.page(page, new LambdaQueryWrapper<Shop>()
-                .eq(Shop::getDelFlag, CommonConstant.DEL_FLAG_0));
+                .eq(Shop::getDelFlag, CommonConstant.DEL_FLAG_0)
+                .eq(Shop::getUserId,userId));
         return Result.OK(pageList);
     }
 

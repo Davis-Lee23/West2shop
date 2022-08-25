@@ -1,5 +1,7 @@
 package com.constant;
 
+import javax.print.attribute.standard.Finishings;
+
 /**
  * @Description: TODO 通用常量
  * @author: LZP
@@ -56,4 +58,9 @@ public class CommonConstant {
      * 提示常量-新增成功
      */
     public static final String DELETE_SUCCESS = "删除成功";
+
+    /**
+     * MD5加密盐
+     */
+    public static final String SALT = "lzp_salt";
 }
