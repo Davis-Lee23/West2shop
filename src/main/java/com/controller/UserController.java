@@ -54,7 +54,7 @@ public class UserController {
     @PutMapping(value = "/edit")
     public Result<?> edit(@RequestBody User user){
         userService.updateById(user);
-        return Result.OK(CommonConstant.EDIT_SUCCESS);
+        return Result.OK(user);
     }
 
     @DeleteMapping(value = "/delete")

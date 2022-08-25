@@ -11,6 +11,7 @@ import com.service.IntoService;
 import com.mapper.IntoMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
@@ -33,6 +34,7 @@ public class IntoServiceImpl extends ServiceImpl<IntoMapper, Into> implements In
     private IntoDetailMapper intoDetailMapper;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void savaMain(Into into, List<IntoDetail> intoDetailList) {
         into.setNo(CommonConstant.IN_ORDER_NO + new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()));
         into.setDelFlag(CommonConstant.DEL_FLAG_0);
@@ -69,6 +71,7 @@ public class IntoServiceImpl extends ServiceImpl<IntoMapper, Into> implements In
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void updateMain(Into into, List<IntoDetail> intoDetailList) {
         into.setUpdateTime(new Date());
         intoMapper.updateById(into);
@@ -89,6 +92,7 @@ public class IntoServiceImpl extends ServiceImpl<IntoMapper, Into> implements In
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void delMain(String id) {
         intoDetailMapper.deleteByMainId(id);
         intoMapper.deleteById(id);

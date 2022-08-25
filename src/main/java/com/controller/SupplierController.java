@@ -8,7 +8,6 @@ import com.constant.ErrorConstant;
 import com.entity.Good;
 import com.entity.Supplier;
 import com.entity.SupplierGood;
-import com.mapper.SupplierGoodMapper;
 import com.service.GoodService;
 import com.service.SupplierGoodService;
 import com.service.SupplierService;

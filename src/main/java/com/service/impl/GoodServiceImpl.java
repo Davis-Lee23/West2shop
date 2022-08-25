@@ -10,6 +10,7 @@ import com.service.ShopService;
 import com.service.TypesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -29,6 +30,7 @@ public class GoodServiceImpl extends ServiceImpl<GoodMapper, Good> implements Go
     private TypesService typesService;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean check(String id) {
         Good good = goodMapper.selectById(id);
         if(good != null && good.getDelFlag().equals(CommonConstant.DEL_FLAG_0)){
@@ -40,6 +42,7 @@ public class GoodServiceImpl extends ServiceImpl<GoodMapper, Good> implements Go
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void errorCheck(Good good) {
         if(good == null){
             throw new RuntimeException(ErrorConstant.IZ_NULL);

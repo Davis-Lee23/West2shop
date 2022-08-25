@@ -86,6 +86,7 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void updateMain(Out out, List<OutDetail> outDetailList) {
         Date now = new Date();
         out.setUpdateTime(now);
@@ -106,6 +107,7 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void delMain(String id) {
         outDetailMapper.deleteByMainId(id);
         outMapper.deleteById(id);
