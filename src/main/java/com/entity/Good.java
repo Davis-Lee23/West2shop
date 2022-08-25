@@ -58,7 +58,7 @@ public class Good implements Serializable {
     /**
      *
      */
-    private Integer stock;
+    private Integer num;
 
     /**
      *

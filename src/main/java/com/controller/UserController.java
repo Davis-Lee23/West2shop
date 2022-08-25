@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.constant.CommonConstant;
+import com.constant.ErrorConstant;
 import com.entity.User;
 import com.service.UserService;
 import com.vo.Result;
@@ -22,6 +23,7 @@ import java.security.PublicKey;
  */
 @RestController
 @RequestMapping("/shop/user")
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -39,9 +41,8 @@ public class UserController {
 
     @PostMapping(value = "/add")
     public Result<?> add(@RequestBody User user){
-        if(userService.list(new LambdaQueryWrapper<User>().
-                eq(User::getName,user.getName())) !=null){
-           return Result.OK("用户名重复");
+        if(userService.getById(user.getPhone()) !=null){
+           return Result.OK(ErrorConstant.DUPLICATE_DATA);
         }
         user.setDelFlag(CommonConstant.DEL_FLAG_0);
         //md5加盐加密
@@ -57,8 +58,8 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/delete")
-    public Result<?> delete(@RequestParam(name = "id") String id){
-        userService.removeById(id);
+    public Result<?> delete(@RequestParam(name = "phone") String phone){
+        userService.removeById(phone);
         return Result.OK(CommonConstant.DELETE_SUCCESS);
     }
 

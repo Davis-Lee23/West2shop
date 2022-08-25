@@ -18,4 +18,13 @@ public interface GoodService extends IService<Good> {
     * @return: boolean
     */
     boolean check(String id);
+
+    /**
+    * TODO 异常检查
+    * @author: LZP
+    * @date: 2022/8/25 23:01
+    * @param good:
+    * @return: void
+    */
+    void errorCheck(Good good);
 }

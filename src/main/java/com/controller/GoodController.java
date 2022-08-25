@@ -59,12 +59,6 @@ public class GoodController {
         return Result.OK(pageList);
     }
 
-    @PostMapping(value = "/uploadImage")
-    public Result<?> uploadImage(@RequestParam("image") MultipartFile file){
-        String url = qiniuUtils.uploadImg(file);
-        return Result.OK(url);
-    }
-
     /**
     * TODO 添加
     * @author: LZP
@@ -74,12 +68,13 @@ public class GoodController {
     */
     @PostMapping(value = "/add")
     public Result<?> add(@RequestBody Good good){
+        goodService.errorCheck(good);
         good.setDelFlag(CommonConstant.DEL_FLAG_0);
         if (good.getNo()==null) {
             good.setNo(CommonConstant.GOOD_NO + new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()));
         }
         if(shopService.check(good.getShopId()) && typesService.check(good.getType())){
-            good.setStock(0);
+            good.setNum(0);
             goodService.save(good);
             return Result.OK("商品添加成功");
         }

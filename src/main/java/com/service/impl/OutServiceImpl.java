@@ -77,8 +77,8 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
             outDetailMapper.insert(detail);
             //对商品表进行处理
             Good good = goodMapper.selectOne(new LambdaQueryWrapper<Good>().eq(Good::getId,detail.getGoodId()));
-            good.setStock(good.getStock()-detail.getNum());
-            if (good.getStock() < 0){
+            good.setNum(good.getNum()-detail.getNum());
+            if (good.getNum() < 0){
                 throw new RuntimeException(ErrorConstant.GOOD_STOCK_INSUFFICIENT);
             }
             goodMapper.updateById(good);

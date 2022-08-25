@@ -2,6 +2,7 @@ package com.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.constant.CommonConstant;
+import com.constant.ErrorConstant;
 import com.entity.Good;
 import com.service.GoodService;
 import com.mapper.GoodMapper;
@@ -36,6 +37,16 @@ public class GoodServiceImpl extends ServiceImpl<GoodMapper, Good> implements Go
             }
         }
         return false;
+    }
+
+    @Override
+    public void errorCheck(Good good) {
+        if(good == null){
+            throw new RuntimeException(ErrorConstant.IZ_NULL);
+        }
+        if(goodMapper.selectById(good.getId()) != null){
+            throw new RuntimeException(ErrorConstant.DUPLICATE_DATA);
+        }
     }
 }
 

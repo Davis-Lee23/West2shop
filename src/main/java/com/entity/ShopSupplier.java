@@ -4,9 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -14,55 +12,37 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * TODO
- *
- * @author: LZP
- * @date: 2022/8/17 16:00
- * @return:
+ * 
+ * @TableName west_shop_supplier
  */
-@TableName(value = "west_into_detail")
+@TableName(value ="west_shop_supplier")
 @Data
-public class IntoDetail implements Serializable {
+public class ShopSupplier implements Serializable {
     /**
-     *
+     * 
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId
     private String id;
 
     /**
-     *
+     * 
      */
-    private String intoId;
+    private String shopId;
 
     /**
-     *
+     * 
+     */
+    private String supplierId;
+
+    /**
+     * 
      */
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
-     *
-     */
-    private String no;
-
-    /**
-     *
-     */
-    private String goodId;
-
-    /**
-     *
-     */
-    private Integer num;
-
-    /**
-     *
-     */
-    private BigDecimal price;
-
-    /**
-     *
+     * 
      */
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -70,7 +50,4 @@ public class IntoDetail implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    @TableField(exist = false)
-    private String name;
 }

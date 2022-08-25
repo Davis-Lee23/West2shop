@@ -36,4 +36,19 @@ public class ErrorConstant {
      *
      */
     public static final String GOOD_NOT_FOUND = "该商品未找到";
+
+    /**
+     *
+     */
+    public static final String ID_IZ_NULL = "id为空";
+
+    /**
+     *
+     */
+    public static final String IZ_NULL = "传入的数据为null";
+
+    /**
+     *
+     */
+    public static final String DUPLICATE_DATA = "数据重复";
 }

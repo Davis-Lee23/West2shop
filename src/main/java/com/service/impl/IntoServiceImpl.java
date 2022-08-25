@@ -49,7 +49,7 @@ public class IntoServiceImpl extends ServiceImpl<IntoMapper, Into> implements In
                     good.setShopId(into.getShopId());
                     good.setName(entity.getName());
                     good.setPrice(entity.getPrice());
-                    good.setStock(entity.getNumber());
+                    good.setNum(entity.getNum());
                     good.setDelFlag(CommonConstant.DEL_FLAG_0);
                     //往商品基本信息添加数据
                     goodMapper.insert(good);
@@ -57,7 +57,7 @@ public class IntoServiceImpl extends ServiceImpl<IntoMapper, Into> implements In
                 }else {
                     //原本存在商品
                     good.setShopId(into.getShopId());
-                    good.setStock(good.getStock()+entity.getNumber());
+                    good.setNum(good.getNum()+entity.getNum());
                     goodMapper.updateById(good);
                 }
                 //往详情表添加商品

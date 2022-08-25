@@ -4,65 +4,49 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * TODO
- *
- * @author: LZP
- * @date: 2022/8/17 16:00
- * @return:
+ * 
+ * @TableName west_supplier_good
  */
-@TableName(value = "west_into_detail")
+@TableName(value ="west_supplier_good")
 @Data
-public class IntoDetail implements Serializable {
+@AllArgsConstructor
+@NoArgsConstructor
+public class SupplierGood implements Serializable {
     /**
-     *
+     * 
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId
     private String id;
 
     /**
-     *
+     * 
      */
-    private String intoId;
+    private String goodId;
 
     /**
-     *
+     * 
+     */
+    private String supplierId;
+
+    /**
+     * 
      */
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
-     *
-     */
-    private String no;
-
-    /**
-     *
-     */
-    private String goodId;
-
-    /**
-     *
-     */
-    private Integer num;
-
-    /**
-     *
-     */
-    private BigDecimal price;
-
-    /**
-     *
+     * 
      */
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -71,6 +55,10 @@ public class IntoDetail implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
-    @TableField(exist = false)
-    private String name;
+    public SupplierGood(String goodId, String supplierId, Date createTime, Date updateTime) {
+        this.goodId = goodId;
+        this.supplierId = supplierId;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+    }
 }
