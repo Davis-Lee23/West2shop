@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class DataDTO {
 
-    private String id;
+    private String goodId;
     private String name;
     private Integer num;
 }

@@ -41,6 +41,11 @@ public class OutDetail implements Serializable {
     /**
      *
      */
+    private String shopId;
+
+    /**
+     *
+     */
     private Integer num;
 
     /**

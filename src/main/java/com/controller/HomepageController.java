@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.common.cache.Cache;
 import com.service.HomepageService;
 import com.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;

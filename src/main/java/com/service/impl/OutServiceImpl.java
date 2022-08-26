@@ -67,13 +67,14 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
         out.setShopId(outData.getShopId());
         outMapper.insert(out);
         //子表
-        for(DataDTO entity:outData.getData()){
+        for(DataDTO entity:outData.getOutDetailList()){
             OutDetail detail = new OutDetail();
             detail.setOutId(out.getId());
-            detail.setGoodId(entity.getId());
+            detail.setGoodId(entity.getGoodId());
             detail.setNum(entity.getNum());
             detail.setCreateTime(now);
             detail.setUpdateTime(now);
+            detail.setShopId(out.getShopId());
             outDetailMapper.insert(detail);
             //对商品表进行处理
             Good good = goodMapper.selectOne(new LambdaQueryWrapper<Good>().eq(Good::getId,detail.getGoodId()));
