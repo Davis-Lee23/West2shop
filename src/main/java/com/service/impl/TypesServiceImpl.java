@@ -1,5 +1,6 @@
 package com.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.constant.CommonConstant;
 import com.entity.Types;
@@ -24,7 +25,8 @@ public class TypesServiceImpl extends ServiceImpl<TypesMapper, Types> implements
 
     @Override
     public List<Types> listWithTree() {
-        List<Types> pageList = typesMapper.selectList(null);
+        List<Types> pageList = typesMapper.selectList(new LambdaQueryWrapper<Types>()
+                .eq(Types::getDelFlag,CommonConstant.DEL_FLAG_0));
         List<Types> types = pageList.stream().filter(type ->
                 CommonConstant.TYPES_ANCESTOR.equals(type.getPid())).map((menu) ->{
                     menu.setChildren(getChildrenData(menu,pageList));

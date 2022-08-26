@@ -47,6 +47,9 @@ public class GoodServiceImpl extends ServiceImpl<GoodMapper, Good> implements Go
         if(good == null){
             throw new RuntimeException(ErrorConstant.IZ_NULL);
         }
+        if(good.getPreStock() == null){
+            good.setPreStock(0);
+        }
         if(goodMapper.selectById(good.getId()) != null){
             throw new RuntimeException(ErrorConstant.DUPLICATE_DATA);
         }
