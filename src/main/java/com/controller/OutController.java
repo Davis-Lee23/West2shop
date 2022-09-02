@@ -45,22 +45,6 @@ public class OutController {
         return Result.OK(pageList);
     }
 
-/*    @PostMapping(value = "/uploadImage")
-    public Result<?> uploadImage(@RequestParam("image") MultipartFile file){
-        String url = outService.uploadImg(file);
-        Out out = new Out();
-        out.setPic(url);
-        outService.save(out);
-        return Result.OK(new OutPicVo(out.getId(), out.getPic()));
-    }
-
-    @PutMapping(value = "/completeData")
-    public Result<?> completeData(@RequestBody OutDataVO outData){
-        System.out.println(outData);
-        outService.completeData(outData);
-        return Result.OK("出库数据补全成功");
-    }*/
-
     /**
     * TODO 新增
     * @author: LZP
@@ -105,5 +89,4 @@ public class OutController {
         outService.delMain(id);
         return Result.OK(CommonConstant.DELETE_SUCCESS);
     }
-
 }

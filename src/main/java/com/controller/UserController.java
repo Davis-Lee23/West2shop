@@ -1,6 +1,7 @@
 package com.controller;
 
 import cn.dev33.satoken.secure.SaSecureUtil;
+import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaResult;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -10,6 +11,8 @@ import com.constant.ErrorConstant;
 import com.entity.User;
 import com.service.UserService;
 import com.vo.Result;
+import com.vo.param.LoginParam;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,10 +66,11 @@ public class UserController {
         return Result.OK(CommonConstant.DELETE_SUCCESS);
     }
 
-    @RequestMapping(value = "/doLogin")
-    public SaResult doLogin(String name,String pwd){
-
-        return null;
+    @PostMapping(value = "/doLogin")
+    public Result<?> doLogin(@RequestBody LoginParam loginParam){
+        if(loginParam == null || StringUtils.isEmpty(loginParam.getPhone()) || StringUtils.isEmpty(loginParam.getPwd())){
+            return Result.error(ErrorConstant.IZ_NULL);
+        }
+        return userService.doLogin(loginParam.getPhone(), loginParam.getPwd());
     }
-
 }

@@ -1,5 +1,9 @@
 package com.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.stp.SaTokenInfo;
+import cn.dev33.satoken.stp.StpUtil;
+import cn.dev33.satoken.util.SaResult;
 import com.common.cache.Cache;
 import com.service.HomepageService;
 import com.vo.Result;
@@ -29,13 +33,22 @@ public class HomepageController {
     * @return: com.vo.Result<?>
     */
     @GetMapping(value = "/hotGoods")
+    @Cache(expire = 5*60*1000,name = "hot_good")
     public Result<?> hotGoods(String shopId){
         return Result.OK(homepageService.hotGoods(shopId));
     }
 
     @GetMapping(value = "/timeSlots")
+    @Cache(expire = 5*60*100,name = "time")
     public Result<?> timeSlots(String shopId){
         return Result.OK(homepageService.timeSlots(shopId));
     }
 
+    @GetMapping(value = "/saToken")
+    public Result<?> test(){
+        StpUtil.login(10001);
+        SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
+        // 第3步，返回给前端
+        return Result.OK(tokenInfo);
+    }
 }

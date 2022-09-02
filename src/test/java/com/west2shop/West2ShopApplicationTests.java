@@ -1,5 +1,8 @@
 package com.west2shop;
 
+import cn.dev33.satoken.stp.SaTokenInfo;
+import cn.dev33.satoken.stp.StpUtil;
+import cn.dev33.satoken.util.SaResult;
 import com.entity.Out;
 import com.mapper.GoodMapper;
 import com.mapper.OutMapper;
@@ -21,5 +24,10 @@ class West2ShopApplicationTests {
     public void context(){
         List<Out> goods = outMapper.selectList(null);
         System.out.println("列表:"+goods);
+    }
+
+    @Test
+    public void saTokenTest(){
+
     }
 }

@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * @Description: TODO 监听器
+ * @Description: TODO 全局监听器
  * @author: LZP
  * @date: 2022年08月18日 17:20
  */

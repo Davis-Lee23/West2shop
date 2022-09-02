@@ -1,10 +1,21 @@
 package com.service.impl;
 
+import cn.dev33.satoken.secure.SaSecureUtil;
+import cn.dev33.satoken.stp.SaTokenInfo;
+import cn.dev33.satoken.stp.StpUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.constant.CommonConstant;
 import com.entity.User;
 import com.service.UserService;
 import com.mapper.UserMapper;
+import com.util.RedisCache;
+import com.vo.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
 * @author LBJ
@@ -15,6 +26,28 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     implements UserService{
 
+    @Resource
+    private UserMapper userMapper;
+    @Autowired
+    private RedisCache redisCache;
+
+    @Override
+    public Result<?> doLogin(String phone, String pwd) {
+        User user = userMapper.selectOne(new LambdaQueryWrapper<User>()
+                .eq(User::getPhone,phone));
+        if(user == null){
+            return Result.error("该用户不存在");
+        }
+        //md5加密盐判断
+        if(SaSecureUtil.md5BySalt(pwd, CommonConstant.SALT).equals(user.getPwd())){
+            StpUtil.login(user.getPhone());
+            //获取token,并存入redis
+            SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
+            redisCache.setCacheObject(tokenInfo.getTokenValue(),phone,120, TimeUnit.MINUTES);
+            return Result.OK(tokenInfo.getTokenValue());
+        }
+        return Result.error("密码不正确");
+    }
 }
 
 

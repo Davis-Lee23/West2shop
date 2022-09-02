@@ -1,11 +1,13 @@
 package com.controller;
 
+import cn.dev33.satoken.annotation.SaCheckRole;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.constant.ErrorConstant;
 import com.service.ShopService;
 import com.service.TypesService;
+import com.util.CaptchaUtil;
 import com.util.QiniuUtils;
 import com.vo.Result;
 import com.constant.CommonConstant;
@@ -16,7 +18,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -37,8 +43,18 @@ public class GoodController {
     private ShopService shopService;
     @Autowired
     private TypesService typesService;
+
     @Autowired
-    private QiniuUtils qiniuUtils;
+    private CaptchaUtil captchaUtil;
+
+    @GetMapping(value = "/pic")
+    public void pic(HttpServletResponse response) throws IOException {
+        response.setContentType("image/png");
+        BufferedImage image = captchaUtil.getMsg();
+        ImageIO.write(image,"PNG",response.getOutputStream());
+        response.getOutputStream().flush();
+        response.getOutputStream().close();
+    }
 
     /**
     * TODO 分页查询
