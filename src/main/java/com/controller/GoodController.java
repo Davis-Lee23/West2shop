@@ -44,18 +44,6 @@ public class GoodController {
     @Autowired
     private TypesService typesService;
 
-    @Autowired
-    private CaptchaUtil captchaUtil;
-
-    @GetMapping(value = "/pic")
-    public void pic(HttpServletResponse response) throws IOException {
-        response.setContentType("image/png");
-        BufferedImage image = captchaUtil.getMsg();
-        ImageIO.write(image,"PNG",response.getOutputStream());
-        response.getOutputStream().flush();
-        response.getOutputStream().close();
-    }
-
     /**
     * TODO 分页查询
     * @author: LZP

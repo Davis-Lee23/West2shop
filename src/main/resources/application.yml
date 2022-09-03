@@ -4,7 +4,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: Ab$123456789
-    url: jdbc:mysql://sh-cynosdbmysql-grp-203oxgtu.sql.tencentcdb.com:24885/west
+    url: jdbc:mysql://sh-cynosdbmysql-grp-203oxgtu.sql.tencentcdb.com:24885/west_prod
 
   # redis配置
   redis:

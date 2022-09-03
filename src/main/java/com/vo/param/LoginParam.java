@@ -11,4 +11,5 @@ import lombok.Data;
 public class LoginParam {
     private String phone;
     private String pwd;
+    private String captcha;
 }

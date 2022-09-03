@@ -52,6 +52,15 @@ public interface OutService extends IService<Out> {
     */
     void delMain(String id);
 
+    /**
+    * TODO 总收入
+    * @author: LZP
+    * @date: 2022/9/3 9:27
+    * @param shopId:
+    * @return: java.lang.Object
+    */
+    Object totalIncome(String shopId);
+
 //    /**
 //    * TODO
 //    * @author: LZP

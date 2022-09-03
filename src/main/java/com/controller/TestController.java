@@ -18,12 +18,12 @@ import java.awt.image.BufferedImage;
 @RequestMapping("/shop/test")
 public class TestController {
 
-    @Autowired
+/*    @Autowired
     private CaptchaUtil captchaUtil;
 
     @GetMapping(value = "/pic")
     public BufferedImage pic(){
         BufferedImage image = captchaUtil.getMsg();
         return image;
-    }
+    }*/
 }

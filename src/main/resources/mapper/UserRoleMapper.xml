@@ -17,4 +17,9 @@
         id,user_id,role_id,
         create_time,update_time,del_flag
     </sql>
+    <select id="selectRoles" resultType="java.lang.String">
+        select role_id
+        from west_user_role
+        where user_id=#{phone}
+    </select>
 </mapper>

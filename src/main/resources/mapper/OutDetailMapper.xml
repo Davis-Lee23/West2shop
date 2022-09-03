@@ -29,4 +29,9 @@
         WHERE hour(create_time) >= #{start} AND hour(create_time) <![CDATA[<]]>  #{end} AND shop_id = #{shopId}
         GROUP BY good_id
     </select>
+    <select id="selectOutsSum" resultType="java.lang.Integer">
+        select count(out_id)
+        from west_out_detail
+        where shop_id=#{shopId} GROUP BY out_id;
+    </select>
 </mapper>

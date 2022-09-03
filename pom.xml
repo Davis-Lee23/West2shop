@@ -10,7 +10,7 @@
     </parent>
     <groupId>com</groupId>
     <artifactId>West2Shop</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>2.0</version>
     <name>West2Shop</name>
     <description>West2Shop</description>
     <properties>
@@ -46,11 +46,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.5.2</version>
@@ -83,12 +78,6 @@
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-spring-boot-starter</artifactId>
-            <version>1.30.0</version>
-        </dependency>
-        <!-- Sa-Token 整合 Redis （使用 jdk 默认序列化方式） -->
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-dao-redis</artifactId>
             <version>1.30.0</version>
         </dependency>
         <!-- 提供Redis连接池 -->

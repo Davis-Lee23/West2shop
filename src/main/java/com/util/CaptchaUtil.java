@@ -1,11 +1,12 @@
 package com.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Description: TODO
@@ -14,6 +15,9 @@ import java.util.Random;
  */
 @Component
 public class CaptchaUtil {
+    @Autowired
+    private RedisCache redisCache;
+
     //生成验证码
     public BufferedImage getMsg() {
         int width = 60, height = 30;
@@ -41,6 +45,8 @@ public class CaptchaUtil {
             g.drawString(strNumber, 13 * i + 6, 20);
         }
         System.out.println("当前验证码" + strCode);
+        //存入redis
+        redisCache.setCacheObject(strCode,strCode,1, TimeUnit.MINUTES);
         g.dispose();
         return image;
     }

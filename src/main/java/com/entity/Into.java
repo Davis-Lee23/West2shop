@@ -43,7 +43,7 @@ public class Into implements Serializable {
     /**
      *
      */
-    private String supplier;
+    private String supplierId;
 
     /**
      *
@@ -76,6 +76,9 @@ public class Into implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    @TableField(exist = false)
+    private String supplierName;
 
     @TableField(exist = false)
     private List<IntoDetail> intoDetailList;

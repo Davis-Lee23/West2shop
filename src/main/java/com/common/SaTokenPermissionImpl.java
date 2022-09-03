@@ -1,7 +1,19 @@
 package com.common;
 
 import cn.dev33.satoken.stp.StpInterface;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.entity.User;
+import com.entity.UserRole;
+import com.mapper.RoleMapper;
+import com.mapper.UserRoleMapper;
+import com.service.RoleService;
+import com.service.UserRoleService;
+import com.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +24,11 @@ import java.util.List;
  */
 @Component
 public class SaTokenPermissionImpl implements StpInterface {
+
+    @Resource
+    private UserRoleMapper userRoleMapper;
+    @Resource
+    private RoleMapper roleMapper;
 
     /**
     * TODO 返回一个账号所有的权限码集合
@@ -36,11 +53,14 @@ public class SaTokenPermissionImpl implements StpInterface {
     */
     @Override
     public List<String> getRoleList(Object loginId, String loginType) {
-        if(loginId.equals("18759482488")){
-            System.out.println("这个有角色");
+        //得到用户id
+        List<String> list = new ArrayList<>();
+        //获取关联表所有的角色id
+        List<String> roleIds = userRoleMapper.selectRoles((String) loginId);
+        //获取角色名称
+        for(String roleId : roleIds){
+            list.add(roleMapper.selectById(roleId).getRole());
         }
-        List<String> list = new ArrayList<String>();
-        list.add("test");
         return list;
     }
 }

@@ -6,11 +6,13 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.constant.CommonConstant;
+import com.constant.ErrorConstant;
 import com.entity.User;
 import com.service.UserService;
 import com.mapper.UserMapper;
 import com.util.RedisCache;
 import com.vo.Result;
+import com.vo.param.LoginParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +34,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     private RedisCache redisCache;
 
     @Override
-    public Result<?> doLogin(String phone, String pwd) {
+    public Result<?> doLogin(LoginParam loginParam) {
+        String phone = loginParam.getPhone();
+        String pwd = loginParam.getPwd();
+        String captcha = loginParam.getCaptcha();
         User user = userMapper.selectOne(new LambdaQueryWrapper<User>()
                 .eq(User::getPhone,phone));
         if(user == null){
             return Result.error("该用户不存在");
+        }
+        if(redisCache.getCacheObject(captcha) == null){
+            return Result.error(ErrorConstant.CAPTCHA_ERROR);
         }
         //md5加密盐判断
         if(SaSecureUtil.md5BySalt(pwd, CommonConstant.SALT).equals(user.getPwd())){

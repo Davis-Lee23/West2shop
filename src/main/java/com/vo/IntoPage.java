@@ -41,7 +41,7 @@ public class IntoPage {
     /**
      *
      */
-    private String supplier;
+    private String supplierId;
 
     /**
      *

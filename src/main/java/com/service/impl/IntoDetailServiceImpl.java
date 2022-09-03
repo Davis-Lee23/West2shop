@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.constant.ErrorConstant;
 import com.entity.Into;
 import com.entity.IntoDetail;
+import com.entity.Supplier;
 import com.mapper.GoodMapper;
+import com.mapper.SupplierMapper;
 import com.service.IntoDetailService;
 import com.mapper.IntoDetailMapper;
 import org.springframework.stereotype.Service;
@@ -25,11 +27,17 @@ public class IntoDetailServiceImpl extends ServiceImpl<IntoDetailMapper, IntoDet
     private IntoDetailMapper intoDetailMapper;
     @Resource
     private GoodMapper goodMapper;
+    @Resource
+    private SupplierMapper supplierMapper;
 
     @Override
     public void getIntoDetail(List<Into> records) {
         try {
             for (Into entity : records) {
+                Supplier supplier = supplierMapper.selectById(entity.getSupplierId());
+                if (supplier != null){
+                    entity.setSupplierName(supplier.getName());
+                }
                 List<IntoDetail> list = intoDetailMapper.selectList(new LambdaQueryWrapper<IntoDetail>()
                         .eq(IntoDetail::getIntoId, entity.getId()));
                 entity.setIntoDetailList(list);

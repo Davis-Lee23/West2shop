@@ -51,4 +51,9 @@ public class ErrorConstant {
      *
      */
     public static final String DUPLICATE_DATA = "数据重复";
+
+    /**
+     *
+     */
+    public static final String CAPTCHA_ERROR = "验证码错误或失效(有效时间1分钟)";
 }

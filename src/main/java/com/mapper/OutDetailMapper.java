@@ -27,6 +27,14 @@ public interface OutDetailMapper extends BaseMapper<OutDetail> {
 
     List<TimeGoodDTO> selectByTime(int start, int end,String shopId);
 
+    /**
+    * TODO 商店所有出库单
+    * @author: LZP
+    * @date: 2022/9/3 11:34
+    * @param shopId :
+    * @return: java.lang.Integer
+    */
+    List<Integer> selectOutsSum(String shopId);
 }
 
 

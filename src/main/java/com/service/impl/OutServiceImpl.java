@@ -6,6 +6,7 @@ import com.constant.CommonConstant;
 import com.constant.ErrorConstant;
 import com.dto.DataDTO;
 import com.entity.Good;
+import com.entity.Into;
 import com.entity.Out;
 import com.entity.OutDetail;
 import com.mapper.GoodMapper;
@@ -14,11 +15,14 @@ import com.service.OutService;
 import com.mapper.OutMapper;
 import com.vo.OutDataVO;
 import com.vo.OutDetailVO;
+import com.vo.OutTotalVO;
+import com.vo.Result;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -42,15 +46,20 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
     @Override
     public void getOutDetail(List<Out> records) {
             for (Out out : records) {
+                //获得所有附表数据
                 List<OutDetail> detailList = outDetailMapper.selectList(new LambdaQueryWrapper<OutDetail>()
                         .eq(OutDetail::getOutId, out.getId()));
                 List<OutDetailVO> voList = out.getVoList();
+                BigDecimal total = new BigDecimal(0);
                 //将子表数据转化为vo
                 for (OutDetail outDetail : detailList) {
                     Good good = goodMapper.selectById(outDetail.getGoodId());
+                    BigDecimal temp = good.getPrice().multiply(BigDecimal.valueOf(outDetail.getNum()));
+                    total = total.add(temp);
                     OutDetailVO vo = transferVo(good, outDetail);
                     voList.add(vo);
                 }
+                out.setTotalPrice(total);
             }
         }
 
@@ -112,6 +121,29 @@ public class OutServiceImpl extends ServiceImpl<OutMapper, Out>
     public void delMain(String id) {
         outDetailMapper.deleteByMainId(id);
         outMapper.deleteById(id);
+    }
+
+    @Override
+    public Object totalIncome(String shopId) {
+        OutTotalVO vo = new OutTotalVO();
+        BigDecimal result = new BigDecimal(0);
+        List<Integer> list = outDetailMapper.selectOutsSum(shopId);
+        try {
+            List<OutDetail> outDetails = outDetailMapper.selectList(new LambdaQueryWrapper<OutDetail>()
+                    .eq(OutDetail::getShopId, shopId));
+            for (OutDetail outDetail : outDetails) {
+                Good good = goodMapper.selectById(outDetail.getGoodId());
+                if (good == null) {
+                    return Result.error(ErrorConstant.GOOD_NOT_FOUND);
+                }
+                result = result.add(good.getPrice().multiply(BigDecimal.valueOf(outDetail.getNum())));
+            }
+        }catch (Exception e){
+            return Result.error("统计所有收入额发生错误");
+        }
+        vo.setTotalPrice(result);
+        vo.setTotalOrderNum(list.size());
+        return vo;
     }
 
     public OutDetailVO transferVo(Good good,OutDetail detail){

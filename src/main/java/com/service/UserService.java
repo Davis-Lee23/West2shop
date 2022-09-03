@@ -3,6 +3,7 @@ package com.service;
 import com.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.vo.Result;
+import com.vo.param.LoginParam;
 
 /**
 * @author LBJ
@@ -15,9 +16,8 @@ public interface UserService extends IService<User> {
     * TODO 登录认证
     * @author: LZP
     * @date: 2022/9/2 10:30
-    * @param phone :
-    * @param pwd :
+    * @param loginParam
     * @return: void
     */
-    Result<?> doLogin(String phone, String pwd);
+    Result<?> doLogin(LoginParam loginParam);
 }

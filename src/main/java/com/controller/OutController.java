@@ -89,4 +89,9 @@ public class OutController {
         outService.delMain(id);
         return Result.OK(CommonConstant.DELETE_SUCCESS);
     }
+
+    @GetMapping(value = "/totalIncome")
+    public Result<?> totalIncome(@RequestParam(name = "shopId") String shopId){
+        return Result.OK(outService.totalIncome(shopId));
+    }
 }

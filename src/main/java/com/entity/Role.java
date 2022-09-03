@@ -1,54 +1,44 @@
 package com.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
 
 /**
  * 
- * @TableName west_user
+ * @TableName west_role
  */
-@TableName(value ="west_user")
+@TableName(value ="west_role")
 @Data
-public class User implements Serializable {
+public class Role implements Serializable {
     /**
      * 
      */
     @TableId
-    private String phone;
+    private String id;
 
     /**
      * 
      */
-    private String name;
+    private String role;
 
     /**
      * 
      */
-    private String pwd;
+    private Date createTime;
 
     /**
      * 
      */
-    private String sex;
+    private Date updateTime;
 
     /**
      * 
      */
-    private String email;
-
-    /**
-     * 
-     */
-    private String headImg;
-
-    /**
-     * 
-     */
-    @TableLogic(value = "0",delval = "1")
     private Integer delFlag;
 
     @TableField(exist = false)
